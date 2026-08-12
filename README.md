@@ -1,4 +1,4 @@
-# xchenter
+# xStack
 
 A modern web application built with React 19, TypeScript, Vite 8, and Tailwind CSS 4.
 
