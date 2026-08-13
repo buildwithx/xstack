@@ -18,8 +18,10 @@ import {
   UserIcon,
   HelpCircleIcon,
   LogOutIcon,
-  AppWindowMac,
   HomeIcon,
+  BugIcon,
+  Sheet,
+  ReceiptCent,
 } from 'lucide-react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
@@ -44,9 +46,14 @@ const mainNavItems = [
     icon: CrownIcon,
   },
   {
-    title: 'Applications',
-    url: '/applications',
-    icon: AppWindowMac,
+    title: 'Issues',
+    url: '/issues',
+    icon: BugIcon,
+  },
+  {
+    title: 'Cheatsheets',
+    url: '/cheatsheets',
+    icon: Sheet,
   },
 ];
 
@@ -96,7 +103,7 @@ export function AppSidebar() {
       {/* Main navigation */}
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupLabel>Platform</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {mainNavItems.map((item) => {
@@ -116,7 +123,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup>
+        <SidebarGroup className="mt-auto">
           <SidebarGroupLabel>Support</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -171,11 +178,11 @@ export function AppSidebar() {
                   Profile
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <SettingsIcon />
-                  Settings
+                  <ReceiptCent />
+                  Billing
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem variant="destructive">
                   <LogOutIcon />
                   Sign out
                 </DropdownMenuItem>

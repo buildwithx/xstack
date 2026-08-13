@@ -1,4 +1,4 @@
-import Home from '@/app/home/home';
+import HomePage from '@/app/home/home-page';
 import App from '@/app/shell/app';
 import { createBrowserRouter } from 'react-router';
 
@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home,
+        Component: HomePage,
       },
     ],
   },
