@@ -23,7 +23,7 @@ import {
   Sheet,
   ReceiptCent,
 } from 'lucide-react';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,6 +33,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ChevronsUpDownIcon } from 'lucide-react';
 import { useSidebar } from '@/hooks/use-sidebar';
+import { useUser, SignOutButton, UserAvatar } from '@clerk/react-router';
 
 const mainNavItems = [
   {
@@ -71,6 +72,7 @@ const secondaryNavItems = [
 ];
 
 export function AppSidebar() {
+  const { user, isLoaded } = useUser();
   const { isMobile } = useSidebar();
   const location = useLocation();
 
@@ -78,6 +80,9 @@ export function AppSidebar() {
     if (url === '/') return location.pathname === '/';
     return location.pathname.startsWith(url);
   };
+
+  const effectiveName = isLoaded ? (user?.firstName ?? user?.username) : '';
+  const effectiveEmail = isLoaded ? user?.primaryEmailAddress?.emailAddress : '';
 
   return (
     <Sidebar collapsible="icon" variant="sidebar">
@@ -87,12 +92,12 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild tooltip="xStack">
               <NavLink to="/">
-                <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg font-bold">
-                  X
-                </div>
+                <Avatar className="rounded-md">
+                  <AvatarImage className="rounded-md" src="/icons.svg" />
+                </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Chenter</span>
-                  <span className="truncate text-xs text-muted-foreground">Workspace</span>
+                  <span className="truncate font-semibold">xStack</span>
+                  <span className="truncate text-xs text-muted-foreground">Developer Hub</span>
                 </div>
               </NavLink>
             </SidebarMenuButton>
@@ -155,14 +160,10 @@ export function AppSidebar() {
                   size="lg"
                   className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                 >
-                  <Avatar className="size-8 rounded-lg">
-                    <AvatarFallback className="rounded-lg bg-primary/10 text-primary font-semibold">
-                      U
-                    </AvatarFallback>
-                  </Avatar>
+                  <UserAvatar />
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">User</span>
-                    <span className="truncate text-xs text-muted-foreground">user@example.com</span>
+                    <span className="truncate font-semibold">{effectiveName}</span>
+                    <span className="truncate text-xs text-muted-foreground">{effectiveEmail}</span>
                   </div>
                   <ChevronsUpDownIcon className="ml-auto size-4" />
                 </SidebarMenuButton>
@@ -182,9 +183,12 @@ export function AppSidebar() {
                   Billing
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
+
                 <DropdownMenuItem variant="destructive">
                   <LogOutIcon />
-                  Sign out
+                  <SignOutButton>
+                    <button>Sign Out</button>
+                  </SignOutButton>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
