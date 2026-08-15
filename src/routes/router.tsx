@@ -1,15 +1,30 @@
-import HomePage from '@/app/home/home-page';
-import App from '@/app/shell/app';
+import ProtectedRoute from '@/components/protected-route';
+import RootLayout from '@/layouts/root-layout';
+import HomePage from '@/pages/home';
+import SignInPage from '@/pages/sign-in';
+import SignUpPage from '@/pages/sign-up';
 import { createBrowserRouter } from 'react-router';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <App />,
+    element: <RootLayout />,
     children: [
       {
-        index: true,
-        Component: HomePage,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: '/',
+            element: <HomePage />,
+          },
+        ],
+      },
+      {
+        path: '/sign-in/*',
+        element: <SignInPage />,
+      },
+      {
+        path: '/sign-up/*',
+        element: <SignUpPage />,
       },
     ],
   },

@@ -662,7 +662,7 @@ export function HomeScreen() {
                       lightning-fast HMR.
                     </CardDescription>
                   </CardHeader>
-                  <CardFooter className="pt-0">
+                  <CardFooter>
                     <Button variant="outline" size="sm" className="w-full text-xs gap-1">
                       Read Docs <ExternalLink className="size-3" />
                     </Button>
@@ -681,7 +681,7 @@ export function HomeScreen() {
                       system.
                     </CardDescription>
                   </CardHeader>
-                  <CardFooter className="pt-0">
+                  <CardFooter>
                     <Button variant="outline" size="sm" className="w-full text-xs gap-1">
                       View Config <ExternalLink className="size-3" />
                     </Button>
