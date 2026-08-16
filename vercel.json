@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/__clerk/:path*",
+      "destination": "https://xstack-frontend.vercel.app/__clerk/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
