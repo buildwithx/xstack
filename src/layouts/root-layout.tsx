@@ -9,7 +9,11 @@ if (!PUBLISHABLE_KEY) {
 
 export default function RootLayout() {
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+    <ClerkProvider
+      publishableKey={PUBLISHABLE_KEY}
+      afterSignOutUrl="/"
+      proxyUrl={import.meta.env.VITE_CLERK_PROXY_URL}
+    >
       <Outlet />
     </ClerkProvider>
   );
